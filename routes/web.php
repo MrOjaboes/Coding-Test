@@ -15,14 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.register');
-});
-Route::post('/sign-up', [App\Http\Controllers\AccountController::class, 'createAccount'])->name('account.sign-up');
-
-Auth::routes();
-Route::group(['prefix' => 'admin',  'middleware' => 'IsAdmin'], function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'adminPage'])->name('admin');
-});
-Route::group(['prefix' => 'home',  'middleware' => 'IsUser'], function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    return view('welcome');
 });
