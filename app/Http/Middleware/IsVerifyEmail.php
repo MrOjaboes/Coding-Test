@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsUser
+class IsVerifyEmail
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,6 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role == "User") {
-            return $next($request);
-        }
-        return redirect()->back()->with('warning', "You don't have access to this page.");
-
+        return $next($request);
     }
 }

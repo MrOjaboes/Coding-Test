@@ -16,6 +16,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth()->user()->role == "Admin") {
+            return $next($request);
+        }
+        return redirect()->back()->with('warning', "You don't have access to this page.");
+
     }
 }

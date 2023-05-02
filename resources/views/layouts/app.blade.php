@@ -37,69 +37,23 @@
           <div class="col-lg-9 d-none d-lg-block">
              </div>
           <div class="col-lg-3 text-right">
-            <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
-          </div>
+            @guest
+            @if (Route::has('login'))
+            <a href="{{ route('login') }}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+            <a href="{{ route('register') }}" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+
+            @endif
+            @endguest
+
+
+           </div>
         </div>
       </div>
     </div>
 
 
 
-    <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('images/bg_1.jpg')">
-        <div class="container">
-          <div class="row align-items-end justify-content-center text-center">
-            <div class="col-lg-7">
-              <h2 class="mb-0">Register</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-    <div class="site-section">
-        <div class="container">
-
-
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" class="form-control form-control-lg">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control form-control-lg">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="pword">Password</label>
-                            <input type="password" id="pword" class="form-control form-control-lg">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="pword2">Re-type Password</label>
-                            <input type="password" id="pword2" class="form-control form-control-lg">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <input type="submit" value="Register" class="btn btn-primary btn-lg px-5">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
-
-
-
-
+    @yield('content')
 
   </div>
   <!-- .site-wrap -->
@@ -130,3 +84,4 @@
 </body>
 
 </html>
+
