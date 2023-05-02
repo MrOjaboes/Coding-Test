@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ResetCodePassword;
 use App\Mail\SendCodeResetPassword;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
@@ -48,16 +49,18 @@ class ForgotPasswordController extends Controller
             return response(['message' => trans('passwords.code_is_expire')], 422);
         }
 
-        // find user's email 
+        // find user's email
         $user = User::firstWhere('email', $passwordReset->email);
 
         // update user password
-        $user->update($request->only('password'));
+        $user->update([
+            'password'=> Hash::make($request->password)
+        ]);
 
-        // delete current code 
+        // delete current code
         $passwordReset->delete();
 
         return response(['message' =>'password has been successfully reset'], 200);
-    
+
     }
 }
