@@ -20,7 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'account'], function () {
     Route::post('/sign-up', [App\Http\Controllers\API\AccountController::class, 'register']);
+    Route::post('/forgot-password', [App\Http\Controllers\API\ForgotPasswordController::class, 'sendEmail']);
+    Route::post('/password-code-check', [App\Http\Controllers\API\ForgotPasswordController::class, 'checkCode']);
     Route::post('/sign-in', [App\Http\Controllers\API\AccountController::class, 'login']);
+    Route::post('/email-verification', [App\Http\Controllers\API\AccountController::class, 'verifyEmail']);
     Route::post('/sign-out', [App\Http\Controllers\API\AccountController::class, 'logout'])->middleware(['auth:sanctum']);
 });
 

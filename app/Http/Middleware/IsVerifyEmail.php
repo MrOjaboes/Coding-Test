@@ -16,6 +16,13 @@ class IsVerifyEmail
      */
     public function handle(Request $request, Closure $next)
     {
+        
+        if (auth()->user()->status == 0) {
+
+            return response('hey, Your Email has not been Verified');
+
+    } else {
         return $next($request);
+    }
     }
 }
