@@ -29,7 +29,6 @@ class AccountController extends Controller
 
             $user = User::create([
                 'name' => $request->fullname,
-                'role' => "User",
                 'email' => $request->email,
                 'verification_code' => substr(rand(0,time()),0,6),
                 'password' => Hash::make($request->password),
@@ -70,9 +69,9 @@ class AccountController extends Controller
             $user = User::where('verification_code', $request->code)->update([
                 'email_verified_at' => Carbon::now(),
                 'status' => 1,
-            ]);          
+            ]);
             return response()->json([
-                'status' => 200,                 
+                'status' => 200,
                 'message' => 'Email Verified Successfully',
             ]);
         }
